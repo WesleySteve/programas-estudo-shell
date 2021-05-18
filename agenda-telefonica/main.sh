@@ -5,7 +5,7 @@
 
 
 # verifica se é root
-(($UID == 0)) && { echo "Root não!"; exit 1 ; }
+(($UID == 0)) && { printf "Root não!"; exit 1 ; }
 
 #------------------------ VARIAVEIS GLOBAIS ----------------------------------#
 
@@ -18,18 +18,54 @@ branco="\033[37;1m"
 
 #------ FIM CORES -----------#
 
+banco_de_dados="banco-agenda-telefone.txt"
+
+campos=("NOME" "SOBRENOME" "DDD" "TELEFONE")
+
+
+
 #---------------------- FIM VARIAVEIS GLOBAIS --------------------------------#
 
 #-------------------------- TESTES -------------------------------------------#
 
+# teste se o arquivo existe
+[[ ! -e "${banco_de_dados}" ]] && > "${banco_de_dados}"
 
 #--------------------- FIM TESTES --------------------------------------------#
 
 #--------------------------- FUNÇÕES -----------------------------------------#
 
+_AJUDA() {
+
+cat << EOF
+OPÇÕES DISPONIVEIS:
+    -h ou --help
+    -a ou --adicionar
+
+EOF
+
+}
+
+_ADICIONAR() {
+printf "adicionar"
+
+}
 
 #----------------------- FIM FUNÇÕES -----------------------------------------# 
 
+#--------------------- MENU PRINCIPAL ----------------------------------------#
+
+# verificando qual parâmetro foi passado.
+
+case "$1" in
+    -h|--help) _AJUDA               ;; # chama func ajuda
+    -a|--adicionar) _ADICIONAR      ;; # chamada func adicionar
+    
+    *) printf %b "voce pode conferir toda ajuda utilizando o parametro ${vermelho}-h${fecha} ou ${vermelho}--help${fecha}\n"
+        
+esac
+
+#-------------------- FIM MENU PRINCIPAL -------------------------------------#
 
 
 #------------------------ FIM DO PROGRAMA ------------------------------------#
