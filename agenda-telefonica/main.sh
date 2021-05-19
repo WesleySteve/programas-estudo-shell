@@ -10,7 +10,7 @@
 #------------------------ VARIAVEIS GLOBAIS ----------------------------------#
 
 #------- CORES  -------------#
-fecha="\033[m"
+fechar_cor="\033[m"
 
 vermelho="\E[31;1m"
 verde="\E[32;1m"
@@ -42,10 +42,13 @@ cat << EOF
 OPÇÕES DISPONIVEIS:
     -h ou --help
     -a ou --adicionar
+    -p ou --pesquisar
 
 EOF
 
 }
+
+#---- ADICIONAR CONTATO -------#
 
 _ADICIONAR() {
 
@@ -80,12 +83,40 @@ _id=$(($(wc -l < "${banco_de_dados}")))
 
 if echo "${_id};${dados[1]};${dados[2]};${dados[3]};${dados[4]}" | tr 'A-Z' 'a-z' >> "${banco_de_dados}"; then
     
-    printf %b "\n${verde}Dados cadastrados com sucesso.${fecha}\n"
+    printf %b "\n${verde}Dados cadastrados com sucesso.${fechar_cor}\n"
     
 else
-    printf %b "\n${vermelho}Houve algum erro.${fecha}\n"
+    printf %b "\n${vermelho}Houve algum erro.${fechar_cor}\n"
 
 fi
+
+
+}
+
+#----- PESQUISAR CONTATO ---------#
+
+_PESQUISAR() {
+
+#-------- VARIAVEIS LOCAIS -------#
+
+local _pesqID=""
+local _id=""
+local _nome=""
+local _sobrenome=""
+local _ddd=""
+local _telefone=""
+
+#------- FIM VARIAVEIS LOCAIS -----#
+
+read -p "Digite o ID do Usuario: " _pesqID
+
+if [[ -z "${_pesqID}" ]]; then
+    
+    printf %b "\n${vermelho}Usuario não encontrado.${fechar_cor}\n"; exit 1 ;
+    
+
+fi
+
 
 
 }
@@ -99,6 +130,7 @@ fi
 case "$1" in
     -h|--help) _AJUDA               ;; # chama func ajuda
     -a|--adicionar) _ADICIONAR      ;; # chamada func adicionar
+    -p|--pesquisar) _PESQUISAR      ;; # chama func pesquisar 'por id'
     
     *) _AJUDA                           # chamada func ajuda
         
