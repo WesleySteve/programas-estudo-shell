@@ -114,10 +114,30 @@ if [[ -z "${_pesqID}" ]]; then
     
     printf %b "\n${vermelho}Usuario não encontrado.${fechar_cor}\n"; exit 1 ;
     
-
+else
+    if grep -q "^${_pesqID}" "${banco_de_dados}"; then
+    
+        _id=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '1' )
+        _nome=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '2' )
+        _sobrenome=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '3' )
+        _ddd=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '4' )
+        _telefone=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '5' )
+        
+    else
+        printf %b "\n${vermelho}Usuario não encontrado.${fechar_cor}\n"; exit 1 ;
+       
+   
+    fi
 fi
 
-
+cat << RESULTADO
+==============================================================
+ID USUARIO: ${_id}
+NOME:       ${_nome}
+SOBRENOME:  ${_sobrenome}
+TELEFONE COM DDD: (${_ddd}) ${_telefone}
+==============================================================
+RESULTADO
 
 }
 
