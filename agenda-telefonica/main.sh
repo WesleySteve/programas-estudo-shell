@@ -13,6 +13,7 @@
 fecha="\033[m"
 
 vermelho="\033[31;1m"
+verde="\E[32;1m"
 azul="033[34;1m"
 branco="\033[37;1m"
 
@@ -47,7 +48,45 @@ EOF
 }
 
 _ADICIONAR() {
-printf "adicionar"
+
+#------ VARIAVEIS LOCAIS -----------#
+
+local _id=""
+
+#------ FIM VARIAVEIS LOCAIS -------#
+
+# verifica o numero de linha no banco de dados
+_id=$(($(wc -l < "${banco_de_dados}")))
+
+# atribui os campos de controlee no banco de dados
+(($_id == 0)) && { echo "${campos[@]}" | tr ' ' ';' >> "${banco_de_dados}" ;}
+
+i=1
+
+for dados in "${campos[@]}"; do
+
+    while [[ -z "${dados[i]}" ]]; do
+        
+        read -p "${dados}": dados[$i]
+        
+    done
+    ((i++))
+done
+
+# gerando o ID
+_id=$(($(wc -l < "${banco_de_dados}")))
+
+# enviando para o banco de dados
+
+if echo "${_id};${dados[1]};${dados[2]};${dados[3]};${dados[4]}" | tr 'A-Z' 'a-z' >> "${banco_de_dados}"; then
+    
+    printf %b "\n${verde}Dados cadastrados com sucesso.${fecha}\n"
+    
+else
+    printf %b "\n${vermelho}Houve algum erro.${fecha}\n"
+
+fi
+
 
 }
 
