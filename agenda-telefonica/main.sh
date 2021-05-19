@@ -12,10 +12,10 @@
 #------- CORES  -------------#
 fecha="\033[m"
 
-vermelho="\033[31;1m"
+vermelho="\E[31;1m"
 verde="\E[32;1m"
-azul="033[34;1m"
-branco="\033[37;1m"
+azul="E[34;1m"
+branco="\E[37;1m"
 
 #------ FIM CORES -----------#
 
