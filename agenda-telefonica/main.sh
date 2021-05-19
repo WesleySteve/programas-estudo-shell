@@ -100,7 +100,7 @@ case "$1" in
     -h|--help) _AJUDA               ;; # chama func ajuda
     -a|--adicionar) _ADICIONAR      ;; # chamada func adicionar
     
-    *) printf %b "voce pode conferir toda ajuda utilizando o parametro ${vermelho}-h${fecha} ou ${vermelho}--help${fecha}\n"
+    *) _AJUDA                           # chamada func ajuda
         
 esac
 
