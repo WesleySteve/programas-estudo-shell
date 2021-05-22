@@ -55,11 +55,12 @@ _ADICIONAR() {
 #------ VARIAVEIS LOCAIS -----------#
 
 local _id=""
+local _gravar_dados=""
 
 #------ FIM VARIAVEIS LOCAIS -------#
 
 # verifica o numero de linha no banco de dados
-_id=$(($(wc -l < "${banco_de_dados}")))
+_id=$(wc -l < "${banco_de_dados}")
 
 # atribui os campos de controlee no banco de dados
 (($_id == 0)) && { echo "${campos[@]}" | tr ' ' ';' >> "${banco_de_dados}" ;}
