@@ -4,3 +4,6 @@ versão: 0.1.0
 versão: 0.2.0
     adicionado a função _ADICIONAR, adiciona um novo contato
     
+versão: 0.3.0
+    adicionado função _PESQUISA, pesquisar usuario por ID
+    
