@@ -42,8 +42,8 @@ function debug_ativado() {
 
 if [[ "$DEBUG" -eq "0" ]]
 then
-    set -x
-    printf %b "${vermelho}+++++++++ DEBUG ATIVADO ++++++++++++++"
+  set -x
+  printf %b "${vermelho}+++++++++ DEBUG ATIVADO ++++++++++++++"
 fi
 
 }
@@ -52,8 +52,8 @@ function debug_desativado() {
 
 if [[ "$DEBUG" -eq "1" ]]
 then
-    set +x
-    printf %b "-------- DEBUG DESATIVADO ---------${fecha_cor}"    
+  set +x
+  printf %b "-------- DEBUG DESATIVADO ---------${fecha_cor}"    
 fi
 
 }
@@ -66,9 +66,9 @@ _AJUDA() {
 
 cat << EOF
 OPÇÕES DISPONIVEIS:
-    -h ou --help
-    -a ou --adicionar
-    -p ou --pesquisar
+  -h ou --help
+  -a ou --adicionar
+  -p ou --pesquisar
 
 EOF
 
@@ -95,11 +95,11 @@ i=1
 
 for dados in "${campos[@]}"; do
 
-    while [[ -z "${dados[i]}" ]]; do
-        
-        read -p "${dados}": dados[$i]
-        
-    done
+  while [[ -z "${dados[i]}" ]]; do
+    
+    read -p "${dados}": dados[$i]
+    
+  done
     ((i++))
 done
 
@@ -108,15 +108,13 @@ _id=$(($(wc -l < "${banco_de_dados}")))
 
 # enviando para o banco de dados
 
-if echo "${_id};${dados[1]};${dados[2]};${dados[3]};${dados[4]}" | tr 'A-Z' 'a-z' >> "${banco_de_dados}"; then
-    
-    printf %b "\n${verde}Dados cadastrados com sucesso.${fechar_cor}\n"
-    
+if echo "${_id};${dados[1]};${dados[2]};${dados[3]};${dados[4]}" | tr 'A-Z' 'a-z' >> "${banco_de_dados}"
+then
+  printf %b "\n${verde}Dados cadastrados com sucesso.${fechar_cor}\n"  
 else
-    printf %b "\n${vermelho}Houve algum erro.${fechar_cor}\n"
-
+  printf %b "\n${vermelho}Houve algum erro.${fechar_cor}\n"
+  
 fi
-
 
 }
 
@@ -137,23 +135,22 @@ local _telefone=''
 
 read -p "Digite o ID do Usuario: " _pesqID
 
-if [[ -z "${_pesqID}" ]]; then
-    
-    printf %b "\n${vermelho}Usuario não encontrado.${fechar_cor}\n"; exit 1 ;
-    
+if [[ -z "${_pesqID}" ]]
+then
+  printf %b "\n${vermelho}Usuario não encontrado.${fechar_cor}\n"; exit 1 ;  
 else
-    if grep -q "^${_pesqID}" "${banco_de_dados}"; then
+  if grep -q "^${_pesqID}" "${banco_de_dados}"
+  then
     
-        _id=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '1' )
-        _nome=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '2' )
-        _sobrenome=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '3' )
-        _ddd=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '4' )
-        _telefone=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '5' )
+    _id=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '1' )
+    _nome=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '2' )
+    _sobrenome=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '3' )
+    _ddd=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '4' )
+    _telefone=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '5' )
         
     else
-        printf %b "\n${vermelho}Usuario não encontrado.${fechar_cor}\n"; exit 1 ;
+      printf %b "\n${vermelho}Usuario não encontrado.${fechar_cor}\n"; exit 1 ;
        
-   
     fi
 fi
 
@@ -175,16 +172,15 @@ RESULTADO
 # verificando qual parâmetro foi passado.
 
 case "$1" in
-    -h|--help) _AJUDA               ;; # chama func ajuda
-    -a|--adicionar) _ADICIONAR      ;; # chamada func adicionar
-    -p|--pesquisar) _PESQUISAR      ;; # chama func pesquisar 'por id'
+  -h|--help) _AJUDA               ;; # chama func ajuda
+  -a|--adicionar) _ADICIONAR      ;; # chamada func adicionar
+  -p|--pesquisar) _PESQUISAR      ;; # chama func pesquisar 'por id'
     
-    *) _AJUDA                           # chamada func ajuda
+  *) _AJUDA                           # chamada func ajuda
         
 esac
 
 #-------------------- FIM MENU PRINCIPAL -------------------------------------#
 
-
-#------------------------ FIM DO PROGRAMA ------------------------------------#
+#------------------------------- FIM DO PROGRAMA -----------------------------#
 

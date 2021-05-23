@@ -1,11 +1,11 @@
 versão: 0.1.0
-    adicionado a função ajuda e o menu principal
+  adicionado a função ajuda e o menu principal
     
 versão: 0.2.0
-    adicionado a função _ADICIONAR, adiciona um novo contato
+  adicionado a função _ADICIONAR, adiciona um novo contato
     
 versão: 0.3.0
-    adicionado função _PESQUISA, pesquisar usuario por ID
+  adicionado função _PESQUISA, pesquisar usuario por ID
     
 versao: 0.4.0
-    adicionado função debugger (ativar/desativar
+  adicionado função debugger (ativar/desativar
