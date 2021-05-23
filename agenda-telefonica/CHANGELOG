@@ -15,3 +15,8 @@ versao: 1.0.0
 compatibilidade a outros shell, adicionando o prefixo function nas funções
 entre outras coisas exclusivas ao bash deixando o programa somente vinculado 
 ao shell bash moderno.
+
+versao: 1.1.0
+  adicionado na função _PESQUISAR o , recebendo por parametro para fazer verificações no inicio da função e atualizado a pesquisa.
+  
+
