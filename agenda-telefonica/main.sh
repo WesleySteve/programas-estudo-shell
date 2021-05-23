@@ -3,7 +3,6 @@
 
 #----------------------- INICIO DO PROGRAMA ----------------------------------#
 
-
 # verifica se é root
 (($UID == 0)) && { printf "Root não!"; exit 1 ; }
 
@@ -60,7 +59,7 @@ fi
 
 #----------------------- FIM DEBUGGER -----------------------------------#
 
-#------------ AJUDA DO PROGRAMA ---------------------------------------#
+#------------ AJUDA DO PROGRAMA ---------------------#
 
 function _AJUDA() {
 
@@ -74,7 +73,9 @@ EOF
 
 }
 
-#---- ADICIONAR CONTATO -------#
+#----------- FIM AJUDA DO PROGRAMA -------------------#
+
+#-------------- CRIAR NOVO CONTATO -----------------#
 
 function _CRIAR() {
 
@@ -83,7 +84,7 @@ function _CRIAR() {
 local _id=''
 local _gravar_dados=''
 
-#------ FIM VARIAVEIS LOCAIS -------#
+#------ FIM VARIAVEIS LOCAIS --------#
 
 # verifica o numero de linha no banco de dados
 _id=$(wc -l < "${banco_de_dados}")
@@ -118,7 +119,9 @@ fi
 
 }
 
-#----- PESQUISAR CONTATO ---------#
+#---------------- FIM CRIAR CONTATO  --------------------------#
+
+#--------------- PESQUISAR CONTATO -----------------------------#
 
 function _PESQUISAR() {
 
@@ -181,6 +184,8 @@ TELEFONE COM DDD: (${_ddd}) ${_telefone}
 RESULTADO
 
 }
+
+#----------------- FIM PESQUISA CONTATO -------------------------#
 
 #----------------------- FIM FUNÇÕES -----------------------------------------# 
 
