@@ -199,6 +199,15 @@ local _pesqID=''
 
 #----------- FIM VARIAVEIS LOCAIS ----------#
 
+read -p "Digire o ID do Usuario: " _pesqID
+_pesqID="${_pesqID:="-1"}"
+
+if [[ "${_pesqID}" = "-1" ]]
+then
+  printf %b "\n${vermelho}Usuario não encontrado!${fecha_cor}\n"; exit 1 ;
+
+fi
+
 printf "${verde}Usuario removido com sucesso${fechar_cor}\n"
 
 }
