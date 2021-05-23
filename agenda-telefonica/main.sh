@@ -196,6 +196,7 @@ function _REMOVER() {
 #------------ VARIAVEIS LOCAIS ------------#
 
 local _pesqID=''
+local _excluir=''
 
 #----------- FIM VARIAVEIS LOCAIS ----------#
 
@@ -205,10 +206,33 @@ _pesqID="${_pesqID:="-1"}"
 if [[ "${_pesqID}" = "-1" ]]
 then
   printf %b "\n${vermelho}Usuario não encontrado!${fecha_cor}\n"; exit 1 ;
-
+else
+  if _PESQUISAR "${_pesqID}"
+  then
+    
+    read -p "Deseja excluir o usuario listado: [S/n] " _excluir
+    _excluir="${_excluir:=s}"
+    _excluir="${_excluir,,}"
+    
+    if [[ "${_excluir}" = "s" || "${_excluir}" = "sim" ]]
+    then
+      # if comando remover o usuario do banco
+      # then
+        printf %b "${verde}Usuario removido com sucesso!${fechar_cor}\n"
+        
+      # else
+      #   # printf %b "${vermelho}Houve algum erro..${fechar_cor}\n"
+      # fi
+      
+      else
+        printf %b "\n${azul}Nada será feito!${fechar_cor}\n"        
+      
+    fi
+    
+  fi
+  
 fi
 
-printf "${verde}Usuario removido com sucesso${fechar_cor}\n"
 
 }
 
