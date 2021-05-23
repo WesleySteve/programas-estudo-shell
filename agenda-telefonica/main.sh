@@ -254,6 +254,7 @@ local _escolha=''
 local _nome=''
 local _sobrenome=''
 local _ddd=''
+local _telefone=''
 
 #---------- FIM VARIAVEIS LOCAIS ------------#
 
@@ -322,14 +323,27 @@ else
         if [[ "${_ddd}" = "vazio" ]]
         then
           printf %b "\n${vermelho}O ddd não ser vazio!${fechar_cor}\n"
-          exit 1;
+          exit 1 ;
         else
           printf %b "\n${verde}O ddd foi atualizado com sucesso${_fechar_cor}\n"
                   
         fi
-      
+      elif [[ "${_escolha}" = "TELEFONE" ]]
+      then
+        read -p "Digite o novo telefone: " _telefone
+        _telefone="${_telefone:="vazio"}"
+        _telefone="${_telefone,,}"
+        
+        if [[ "${_telefone}" = "vazio" ]]
+        then
+          printf %b "\n${vermelho}O telefone não pode ser vazio${fechar_cor}\n"
+          exit 1 ;
+        else
+          printf %b "\n${verde}O telefone foi atualizado com sucesso${fechar_cor}\n"
+          
+        fi
+          
       fi
-      
       
     fi
     
