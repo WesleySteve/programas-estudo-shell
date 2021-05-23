@@ -25,4 +25,9 @@ versao: 1.2.0
 versao: 1.3.0
   adicionado a função _REMOVER, responsavel em remover um contato por id
   
+versao 1.4.0
+  adicionado a função _ATUALIZAR, responsavel em atualizar os dados de um
+contato. Está faltando adicionar a atualização efetiva do campo no
+banco de dados.
+
 
