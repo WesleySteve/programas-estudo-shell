@@ -251,6 +251,8 @@ local _pesqID=''
 local _atualizar=''
 local _escolha=''
 
+local _nome=''
+
 #---------- FIM VARIAVEIS LOCAIS ------------#
 
 read -p "Digite o ID do usuario: " _pesqID
@@ -281,8 +283,26 @@ else
         break
         
       done
+
+      if [[ "${_escolha}" = "NOME" ]]
+      then
+        read -p "Digite o novo nome: " _nome
+        _nome="${_nome:="vazio"}"
+        _nome="${_nome,,}"
+
+        if [[ "${_nome}" = "vazio" ]]
+        then
+          printf %b "\n${vermelho}O nome não pode ser vazio!${fechar_cor}\n"
+          exit 1 ;
+        else
+          printf "\n${verde}Nome atualizado com sucesso${fechar_cor}\n"
+        fi
       
       
+      fi
+
+      
+
       
     fi
     
