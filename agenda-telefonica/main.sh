@@ -37,7 +37,7 @@ pesquisa=('NOME' 'SOBRENOME' 'DDD' 'TELEFONE' 'SAIR')
 
 #--------------------------- FUNÇÕES -----------------------------------------#
 
-#------------------------ DEBUGGER -------------------------------------#
+#------------------------- DEBUGGER -----------------------------------------#
 
 function debug_ativado() {
 
@@ -45,6 +45,7 @@ if [[ "$DEBUG" -eq "0" ]]
 then
   set -x
   printf %b "${vermelho}+++++++++ DEBUG ATIVADO ++++++++++++++"
+  
 fi
 
 }
@@ -54,14 +55,15 @@ function debug_desativado() {
 if [[ "$DEBUG" -eq "1" ]]
 then
   set +x
-  printf %b "-------- DEBUG DESATIVADO ---------${fecha_cor}"    
+  printf %b "-------- DEBUG DESATIVADO ---------${fecha_cor}"  
+    
 fi
 
 }
 
-#----------------------- FIM DEBUGGER -----------------------------------#
+#----------------------- FIM DEBUGGER ---------------------------------------#
 
-#------------ AJUDA DO PROGRAMA ---------------------#
+#--------------------------- AJUDA DO PROGRAMA ------------------------------#
 
 function _AJUDA() {
 
@@ -77,18 +79,18 @@ EOF
 
 }
 
-#----------- FIM AJUDA DO PROGRAMA -------------------#
+#------------------------- FIM AJUDA DO PROGRAMA ---------------------------#
 
-#-------------- CRIAR NOVO CONTATO -----------------#
+#---------------------- CRIAR NOVO CONTATO ---------------------------------#
 
 function _CRIAR() {
 
-#------ VARIAVEIS LOCAIS -----------#
+#-------- VARIAVEIS LOCAIS -----------#
 
 local _id=''
 local _gravar_dados=''
 
-#------ FIM VARIAVEIS LOCAIS --------#
+#-------- FIM VARIAVEIS LOCAIS ----------#
 
 # verifica o numero de linha no banco de dados
 _id=$(wc -l < "${banco_de_dados}")
@@ -124,13 +126,13 @@ fi
 
 }
 
-#---------------- FIM CRIAR CONTATO  --------------------------#
+#------------------------ FIM CRIAR CONTATO  ------------------------------#
 
-#--------------- PESQUISAR CONTATO -----------------------------#
+#----------------------- PESQUISAR CONTATO ---------------------------------#
 
 function _PESQUISAR() {
 
-#-------- VARIAVEIS LOCAIS -------#
+#---------- VARIAVEIS LOCAIS ---------#
 
 local _parametro=''
 local _pesqID=''
@@ -141,7 +143,7 @@ local _ddd=''
 local _telefone=''
 local _resultado=''
 
-#------- FIM VARIAVEIS LOCAIS -----#
+#--------- FIM VARIAVEIS LOCAIS -----------#
 
 _parametro="$1"
 
@@ -190,18 +192,18 @@ RESULTADO
 
 }
 
-#----------------- FIM PESQUISA CONTATO -------------------------#
+#--------------------- FIM PESQUISA CONTATO ------------------------------#
 
-#----------------- REMOVER CONTATO -----------------------------#
+#-------------------- REMOVER CONTATO -----------------------------------#
 
 function _REMOVER() {
 
-#------------ VARIAVEIS LOCAIS ------------#
+#-------------- VARIAVEIS LOCAIS --------------#
 
 local _pesqID=''
 local _excluir=''
 
-#----------- FIM VARIAVEIS LOCAIS ----------#
+#------------- FIM VARIAVEIS LOCAIS -------------#
 
 read -p "Digire o ID do Usuario: " _pesqID
 _pesqID="${_pesqID:="-1"}"
@@ -239,13 +241,13 @@ fi
 
 }
 
-#---------------- FIM REMOVER CONTATO -------------------------#
+#--------------------- FIM REMOVER CONTATO --------------------------------#
 
-#------------- ATUALZIAR CONTATO ------------------------#
+#--------------------- ATUALZIAR CONTATO ---------------------------------#
 
 function _ATUALIZAR() {
 
-#---------- VARIAVEIS LOCAIS -----------#
+#------------ VARIAVEIS LOCAIS -------------#
 
 local _pesqID=''
 local _atualizar=''
@@ -256,7 +258,7 @@ local _sobrenome=''
 local _ddd=''
 local _telefone=''
 
-#---------- FIM VARIAVEIS LOCAIS ------------#
+#------------- FIM VARIAVEIS LOCAIS ---------------#
 
 read -p "Digite o ID do usuario: " _pesqID
 _pesqID="${_pesqID:="-1"}"
@@ -308,10 +310,14 @@ else
         
         if [[ "${_sobrenome}" = "vazio" ]]
         then
-          printf %b "\n${vermelho}O sobrenome não pode ser vazio${fechar_cor}\n"
+          printf %b "\n${vermelho}
+                                O sobrenome não pode ser vazio
+                       ${fechar_cor}\n"
           exit 1 ;
         else
-          printf %b "\n${verde}O sobrenome atualizado com sucesso${fechar_cor}\n"
+          printf %b "\n${verde}
+                              O sobrenome atualizado com sucesso
+                       ${fechar_cor}\n"
           
         fi
       elif [[ "${_escolha}" = "DDD" ]]
@@ -325,7 +331,9 @@ else
           printf %b "\n${vermelho}O ddd não ser vazio!${fechar_cor}\n"
           exit 1 ;
         else
-          printf %b "\n${verde}O ddd foi atualizado com sucesso${_fechar_cor}\n"
+          printf %b "\n${verde}
+                            O ddd foi atualizado com sucesso
+                       ${_fechar_cor}\n"
                   
         fi
       elif [[ "${_escolha}" = "TELEFONE" ]]
@@ -339,7 +347,9 @@ else
           printf %b "\n${vermelho}O telefone não pode ser vazio${fechar_cor}\n"
           exit 1 ;
         else
-          printf %b "\n${verde}O telefone foi atualizado com sucesso${fechar_cor}\n"
+          printf %b "\n${verde}
+                              O telefone foi atualizado com sucesso
+                       ${fechar_cor}\n"
           
         fi
           
@@ -354,7 +364,7 @@ fi
 
 }
 
-#----------- FIM ATUALIZAR CONTATO ------------------------#
+#----------------------- FIM ATUALIZAR CONTATO -----------------------------#
 
 #----------------------- FIM FUNÇÕES -----------------------------------------# 
 
