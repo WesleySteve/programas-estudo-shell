@@ -124,34 +124,51 @@ function _PESQUISAR() {
 
 #-------- VARIAVEIS LOCAIS -------#
 
+local _parametro=''
 local _pesqID=''
 local _id=''
 local _nome=''
 local _sobrenome=''
 local _ddd=''
 local _telefone=''
+local _resultado=''
 
 #------- FIM VARIAVEIS LOCAIS -----#
 
-read -p "Digite o ID do Usuario: " _pesqID
+_parametro="$1"
 
-if [[ -z "${_pesqID}" ]]
+if [[ "${_parametro}" = "-p" ]]
 then
-  printf %b "\n${vermelho}Usuario não encontrado.${fechar_cor}\n"; exit 1 ;  
+  read -p "Digite o ID do Usuario: " _pesqID
+  _pesqID="${_pesqID:="-1"}"
+
+elif [[ "${_parametro}" -gt "0" ]]
+then
+  _pesqID="${_parametro}"
+  
+fi
+
+if [[ "${_pesqID}" = "-1" ]]
+then
+  printf %b "\n${vermelho}Usuario não encontrado.${fechar_cor}\n"
+  exit 1
 else
   if grep -q "^${_pesqID}" "${banco_de_dados}"
   then
     
-    _id=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '1' )
-    _nome=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '2' )
-    _sobrenome=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '3' )
-    _ddd=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '4' )
-    _telefone=$(grep "^${_pesqID}" "${banco_de_dados}" | cut -d ';' -f '5' )
+    _resultado=$(grep "^${_pesqID}" "${banco_de_dados}" )
+    
+    _id=$(cut -d ';' -f '1' <<< "${_resultado}" )
+    _nome=$( cut -d ';' -f '2' <<< "${_resultado}" )
+    _sobrenome=$(cut -d ';' -f '3' <<< "${_resultado}" )
+    _ddd=$(cut -d ';' -f '4' <<< "${_resultado}"  )
+    _telefone=$(cut -d ';' -f '5' <<< "${_resultado}" )
         
     else
       printf %b "\n${vermelho}Usuario não encontrado.${fechar_cor}\n"; exit 1 ;
        
     fi
+
 fi
 
 cat << RESULTADO
@@ -172,9 +189,9 @@ RESULTADO
 # verificando qual parâmetro foi passado.
 
 case "$1" in
-  -h|--help) _AJUDA               ;; # chama func ajuda
-  -c|--criar) _CRIAR              ;; # chamada func adicionar
-  -p|--pesquisar) _PESQUISAR      ;; # chama func pesquisar 'por id'
+  -h|--help) _AJUDA                 ;; # chama func ajuda
+  -c|--criar) _CRIAR                ;; # chamada func adicionar
+  -p|--pesquisar) _PESQUISAR  "$1"  ;; # chama func pesquisar 'por id'
     
   *) _AJUDA                           # chamada func ajuda
         
