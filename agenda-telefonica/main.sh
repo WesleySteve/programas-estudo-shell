@@ -69,6 +69,7 @@ OPÇÕES DISPONIVEIS:
   -c ou --criar       para criar um novo contato
   -p ou --pesquisar   para pesquisar um contato por ID
   -r ou --remover     para remover um contato por ID
+  -a ou --atualizar   para atualizar os dados de um contato por ID
 
 EOF
 
@@ -238,6 +239,29 @@ fi
 
 #---------------- FIM REMOVER CONTATO -------------------------#
 
+#------------- ATUALZIAR CONTATO ------------------------#
+
+function _ATUALIZAR() {
+
+#---------- VARIAVEIS LOCAIS -----------#
+
+local _pesqID=''
+
+#---------- FIM VARIAVEIS LOCAIS ------------#
+
+read -p "Digite o ID do usuario: " _pesqID
+_pesqID="${_pesqID:="-1"}"
+
+if [[ "${_pesqID}" = "-1" ]]
+then
+  printf %b "\n${vermelho}Usuario não encontrado!${fechar_cor}\n"; exit 1 ;
+fi
+
+
+}
+
+#----------- FIM ATUALIZAR CONTATO ------------------------#
+
 #----------------------- FIM FUNÇÕES -----------------------------------------# 
 
 #--------------------- MENU PRINCIPAL ----------------------------------------#
@@ -249,7 +273,7 @@ case "$1" in
   -c|--criar) _CRIAR                ;; # chamada func adicionar
   -p|--pesquisar) _PESQUISAR  "$1"  ;; # chama func pesquisar 'por id'
   -r|--remover) _REMOVER            ;; # chamada func remover 'por id'
-    
+  -a|--atualizar) _ATUALIZAR        ;; # chamada func atualizar 'por id'
   *) _AJUDA                           # chamada func ajuda
         
 esac
