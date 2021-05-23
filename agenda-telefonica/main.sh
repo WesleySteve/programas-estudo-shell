@@ -105,11 +105,12 @@ for dados in "${campos[@]}"; do
 done
 
 # gerando o ID
-_id=$(($(wc -l < "${banco_de_dados}")))
+_id=$(wc -l < "${banco_de_dados}")
 
 # enviando para o banco de dados
+_gravar_dados="${_id};${dados[1]};${dados[2]};${dados[3]};${dados[4]}"
 
-if echo "${_id};${dados[1]};${dados[2]};${dados[3]};${dados[4]}" | tr 'A-Z' 'a-z' >> "${banco_de_dados}"
+if echo "${_gravar_dados,,}" >> "${banco_de_dados}"
 then
   printf %b "\n${verde}Dados cadastrados com sucesso.${fechar_cor}\n"  
 else
