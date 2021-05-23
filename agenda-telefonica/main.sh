@@ -36,6 +36,32 @@ campos=('NOME' 'SOBRENOME' 'DDD' 'TELEFONE')
 
 #--------------------------- FUNÇÕES -----------------------------------------#
 
+#------------------------ DEBUGGER -------------------------------------#
+
+function debug_ativado() {
+
+if [[ "$DEBUG" -eq "0" ]]
+then
+    set -x
+    printf %b "${vermelho}+++++++++ DEBUG ATIVADO ++++++++++++++"
+fi
+
+}
+
+function debug_desativado() {
+
+if [[ "$DEBUG" -eq "1" ]]
+then
+    set +x
+    printf %b "-------- DEBUG DESATIVADO ---------${fecha_cor}"    
+fi
+
+}
+
+#----------------------- FIM DEBUGGER -----------------------------------#
+
+
+
 _AJUDA() {
 
 cat << EOF
