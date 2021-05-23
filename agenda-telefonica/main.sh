@@ -65,9 +65,10 @@ function _AJUDA() {
 
 cat << EOF
 OPÇÕES DISPONIVEIS:
-  -h ou --help
-  -c ou --criar
-  -p ou --pesquisar
+  -h ou --help        para ajuda
+  -c ou --criar       para criar um novo contato
+  -p ou --pesquisar   para pesquisar um contato por ID
+  -r ou --remover     para remover um contato por ID
 
 EOF
 
@@ -188,6 +189,22 @@ RESULTADO
 
 #----------------- FIM PESQUISA CONTATO -------------------------#
 
+#----------------- REMOVER CONTATO -----------------------------#
+
+function _REMOVER() {
+
+#------------ VARIAVEIS LOCAIS ------------#
+
+local _pesqID=''
+
+#----------- FIM VARIAVEIS LOCAIS ----------#
+
+printf "${verde}Usuario removido com sucesso${fechar_cor}\n"
+
+}
+
+#---------------- FIM REMOVER CONTATO -------------------------#
+
 #----------------------- FIM FUNÇÕES -----------------------------------------# 
 
 #--------------------- MENU PRINCIPAL ----------------------------------------#
@@ -198,6 +215,7 @@ case "$1" in
   -h|--help) _AJUDA                 ;; # chama func ajuda
   -c|--criar) _CRIAR                ;; # chamada func adicionar
   -p|--pesquisar) _PESQUISAR  "$1"  ;; # chama func pesquisar 'por id'
+  -r|--remover) _REMOVER            ;; # chamada func remover 'por id'
     
   *) _AJUDA                           # chamada func ajuda
         
