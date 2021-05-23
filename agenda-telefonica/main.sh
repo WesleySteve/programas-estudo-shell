@@ -252,6 +252,7 @@ local _atualizar=''
 local _escolha=''
 
 local _nome=''
+local _sobrenome=''
 
 #---------- FIM VARIAVEIS LOCAIS ------------#
 
@@ -284,7 +285,7 @@ else
         
       done
 
-      if [[ "${_escolha}" = "NOME" ]]
+      if [[ "${_escolha}" = 'NOME' ]]
       then
         read -p "Digite o novo nome: " _nome
         _nome="${_nome:="vazio"}"
@@ -297,10 +298,25 @@ else
         else
           printf "\n${verde}Nome atualizado com sucesso${fechar_cor}\n"
         fi
-      
+      elif [[ "${_escolha}" = 'SOBRENOME' ]]
+      then
+        read -p "Digite o novo sobrenome: " _sobrenome
+        _sobrenome="${_sobrenome:="vazio"}"
+        _sobrenome="${_sobrenome,,}"
+        
+        if [[ "${_sobrenome}" = "vazio" ]]
+        then
+          printf %b "\n${vermelho}O sobrenome não pode ser vazio${fechar_cor}\n"
+          exit 1 ;
+        else
+          printf %b "\n${verde}Sobrenome atualizado com sucesso${fechar_cor}\n"
+          
+        fi
       
       fi
+      
 
+      
       
 
       
