@@ -22,6 +22,8 @@ banco_de_dados="banco-agenda-telefone.txt"
 
 campos=('NOME' 'SOBRENOME' 'DDD' 'TELEFONE')
 
+pesquisa=('NOME' 'SOBRENOME' 'DDD' 'TELEFONE' 'SAIR')
+
 
 
 #---------------------- FIM VARIAVEIS GLOBAIS --------------------------------#
@@ -246,6 +248,8 @@ function _ATUALIZAR() {
 #---------- VARIAVEIS LOCAIS -----------#
 
 local _pesqID=''
+local _atualizar=''
+local _escolha=''
 
 #---------- FIM VARIAVEIS LOCAIS ------------#
 
@@ -255,6 +259,35 @@ _pesqID="${_pesqID:="-1"}"
 if [[ "${_pesqID}" = "-1" ]]
 then
   printf %b "\n${vermelho}Usuario não encontrado!${fechar_cor}\n"; exit 1 ;
+else
+  if _PESQUISAR "${_pesqID}"
+  then
+    
+    read -p "Deseja alterar os dados deste usuario: [S/n] " _atualizar
+    
+    _atualizar="${_atualizar:=s}"
+    _atualizar="${_atualizar,,}"
+    
+    if [[ "${_atualizar}" = "s" || "${_atualizar}" = "sim" ]]
+    then
+      
+      # aqui é para selecionar qual campo deseja alterar
+      PS3="Escolha qual campo deseja alterar: "
+      
+      select op in "${pesquisa[@]}"; do
+        
+        # selecionando uma opção
+        _escolha="${op}"
+        break
+        
+      done
+      
+      
+      
+    fi
+    
+  fi
+  
 fi
 
 
