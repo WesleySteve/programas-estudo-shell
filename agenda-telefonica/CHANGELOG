@@ -19,4 +19,7 @@ ao shell bash moderno.
 versao: 1.1.0
   adicionado na função _PESQUISAR o , recebendo por parametro para fazer verificações no inicio da função e atualizado a pesquisa.
   
+versao: 1.2.0
+  atualizado a forma de gerar o ID e removido o tr no momento da gravação dos dados na função _CRIAR.
+  
 
