@@ -60,14 +60,14 @@ fi
 
 #----------------------- FIM DEBUGGER -----------------------------------#
 
+#------------ AJUDA DO PROGRAMA ---------------------------------------#
 
-
-_AJUDA() {
+function _AJUDA() {
 
 cat << EOF
 OPÇÕES DISPONIVEIS:
   -h ou --help
-  -a ou --adicionar
+  -c ou --criar
   -p ou --pesquisar
 
 EOF
@@ -76,7 +76,7 @@ EOF
 
 #---- ADICIONAR CONTATO -------#
 
-_ADICIONAR() {
+function _CRIAR() {
 
 #------ VARIAVEIS LOCAIS -----------#
 
@@ -120,7 +120,7 @@ fi
 
 #----- PESQUISAR CONTATO ---------#
 
-_PESQUISAR() {
+function _PESQUISAR() {
 
 #-------- VARIAVEIS LOCAIS -------#
 
@@ -173,7 +173,7 @@ RESULTADO
 
 case "$1" in
   -h|--help) _AJUDA               ;; # chama func ajuda
-  -a|--adicionar) _ADICIONAR      ;; # chamada func adicionar
+  -c|--criar) _CRIAR              ;; # chamada func adicionar
   -p|--pesquisar) _PESQUISAR      ;; # chama func pesquisar 'por id'
     
   *) _AJUDA                           # chamada func ajuda
