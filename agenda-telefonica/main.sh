@@ -21,7 +21,7 @@ branco="\033[37;1m"
 
 banco_de_dados="banco-agenda-telefone.txt"
 
-campos=("NOME" "SOBRENOME" "DDD" "TELEFONE")
+campos=('NOME' 'SOBRENOME' 'DDD' 'TELEFONE')
 
 
 
@@ -54,8 +54,8 @@ _ADICIONAR() {
 
 #------ VARIAVEIS LOCAIS -----------#
 
-local _id=""
-local _gravar_dados=""
+local _id=''
+local _gravar_dados=''
 
 #------ FIM VARIAVEIS LOCAIS -------#
 
@@ -100,12 +100,12 @@ _PESQUISAR() {
 
 #-------- VARIAVEIS LOCAIS -------#
 
-local _pesqID=""
-local _id=""
-local _nome=""
-local _sobrenome=""
-local _ddd=""
-local _telefone=""
+local _pesqID=''
+local _id=''
+local _nome=''
+local _sobrenome=''
+local _ddd=''
+local _telefone=''
 
 #------- FIM VARIAVEIS LOCAIS -----#
 
